@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - RCB Electronics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+background-image: linear-gradient(to right, #f20d0d, #2b00e9,red);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+background-image: linear-gradient(to right, #f20d0d, #2b00e9,red);
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.6);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffea00;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1em;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff0d57;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover {
+      background-color: #ff3269;
+    }
+    .signup-link {
+      margin-top: 15px;
+      text-align: center;
+      color: #fff;
+    }
+    .signup-link a {
+      color: #ffea00;
+      text-decoration: none;
+    }
+    .error-msg {
+      color: #ff4c4c;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: none;
+      text-align: center;
+    }
+    #rcb {
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+   
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    
+    <div class="error-msg" id="error-msg">Invalid username or password.</div>
+    <form id="loginForm">
+        <img id="rcb" src="./Royal_Challengers_Bengaluru_Logo.svg-4.png" height="100px" alt="">
+      <input type="text" id="username" placeholder="Enter username" required />
+      <input type="password" id="password" placeholder="Enter password" required />
+      <button type="submit">Login</button>
+      
+    </form>
+    <div class="signup-link">
+      Don't have an account? <a href="index.html">Sign up here</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('error-msg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const usernameInput = document.getElementById('username').value.trim();
+      const passwordInput = document.getElementById('password').value;
+
+      const storedUsername = localStorage.getItem('rcb_username');
+      const storedPassword = localStorage.getItem('rcb_password');
+
+      if (usernameInput === storedUsername && passwordInput === storedPassword) {
+
+        window.location.href = 'homepage.html';
+      } else {
+
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

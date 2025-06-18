@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup - RCB Electronics</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: linear-gradient(to right, #f20d0d, #2b00e9,rgb(253, 0, 0));
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #ffe600;
+    }
+
+    .signup-box {
+      background-image: linear-gradient(to right, #f20d0d, #2b00e9,red);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #ff0d57;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff3269;
+    }
+
+    .msg {
+      margin-top: 10px;
+      color: #00ff00;
+      font-weight: bold;
+    }
+
+    .error {
+      color: #ff4d4d;
+    }
+
+    a {
+      color: #ffea00;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>RCB ELECTRONICS - SIGNUP</h1>
+
+  <div class="signup-box">
+        <aside><img src="./Royal_Challengers_Bengaluru_Logo.svg-4.png" height="100px" alt=""></aside>
+
+    <input type="text" id="username" placeholder="Create Username" /><br />
+    <input type="password" id="password" placeholder="Create Password" /><br />
+    <button onclick="signup()">Sign Up</button>
+    <div id="message" class="msg"></div>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+  </div>
+
+  <script>
+    function signup() {
+      let username = document.getElementById("username").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let message = document.getElementById("message");
+
+      if (username === "" || password === "") {
+        message.innerText = "Please fill all fields!";
+        message.className = "msg error";
+        return;
+      }
+
+      localStorage.setItem("rcb_username", username);
+      localStorage.setItem("rcb_password", password);
+
+      message.innerText = "Signup successful! Redirecting to login...";
+      message.className = "msg";
+
+      setTimeout(() => {
+        window.location.href = "loginpage.html";
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
