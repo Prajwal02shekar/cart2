@@ -4,76 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RCB Electronics</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       background: linear-gradient(to right, #121212, #1a1a40);
-      color: white;
+      color: #fff;
     }
 
-    .navcontainer {
-      height: 75px;
-      width: 100%; 
-      background-image: linear-gradient(to right, #f20d0d, #2b00e9,red);
+    header {
+      background: linear-gradient(to right, #f20d0d, #2b00e9, red);
+      padding: 10px 20px;
       display: flex;
       align-items: center;
-      box-sizing: border-box;
-      padding: 0 20px;
+      justify-content: space-between ;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      flex-wrap: wrap;
     }
 
-    .navcontainer .logoblock {
+    header .logo img {
+      max-height: 60px;
+    }
+
+    nav ul {
       display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .navcontainer .logoblock img {
-      max-height: 70px;
-      width: auto;
-    }
-
-    .navcontainer .menuitems {
-      flex: 1;
-      display: flex;
-      align-items: center;
-    }
-
-    .menuitems ul {
+      gap: 20px;
       list-style: none;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
       padding: 0;
       margin: 0;
+      align-items: center;
     }
 
-    .menuitems ul li a {
+    nav a {
       color: white;
       font-weight: bold;
       text-decoration: none;
-      transition: color 0.3s;
       position: relative;
     }
 
-    .menuitems ul li a:hover {
-      color: #ffea00; 
-    }
-
-    .menuitems ul li i {
-      color: white;
-      position: relative;
-    }
-
-    .menuitems ul li i:hover {
-      font-size: 18px;
+    nav a:hover {
       color: #ffea00;
-      cursor: pointer;
     }
 
     #cart-count {
@@ -82,74 +57,76 @@
       font-weight: bold;
       padding: 3px 8px;
       border-radius: 50%;
-      margin-left: 5px;
-      font-size: 14px;
-      display: none; /* hidden initially */
+      font-size: 12px;
       position: absolute;
       top: -10px;
       right: -15px;
+      display: none;
     }
 
     #empty-msg {
-      margin-left: 8px;
-      font-weight: bold;
       color: #ffea00;
+      font-size: 0.9em;
+      margin-left: 6px;
     }
 
-    h1.main-title {
+    .main-title1 {
       text-align: center;
-      margin-top: 30px;
-      text-decoration: underline;
-      color: #ffffff;
-    }
-
-    h1.main-title1 {
-      text-align: center;
-      margin-top: 30px;
-      color: #ffe600;
+      margin: 20px 0 10px;
       font-size: 2em;
+      color: #ffe600;
     }
 
-    .product-box {
+    .main-title {
+      text-align: center;
+      font-size: 1.6em;
+      text-decoration: underline;
+      margin-bottom: 20px;
+    }
+
+    .products-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px 40px;
+    }
+
+    .product-card {
       background: linear-gradient(145deg, #f81616, #2e2ef0);
-      padding: 15px;
-      margin: 10px;
       border-radius: 15px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-      color: white;
-      transition: transform 0.3s ease;
-      max-width: 300px;
-      height: 470px;
-      box-sizing: border-box;
+      padding: 15px;
+      width: 280px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease;
     }
 
-    .product-box:hover {
-      transform: scale(1.03);
+    .product-card:hover {
+      transform: scale(1.05);
     }
 
-    .product-box img {
-      max-width: 100%;
-      max-height: 250px;
+    .product-card img {
+      width: 100%;
+      max-height: 200px;
       object-fit: contain;
       margin-bottom: 10px;
     }
 
-    .product-box h1 {
-      font-size: 1.4em;
-      margin: 10px 0 5px 0;
-      text-align: center;
+    .product-card h2 {
+      font-size: 1.2em;
+      margin: 10px 0;
     }
 
-    .product-box p {
-      margin: 3px 0;
+    .product-card p {
       font-size: 0.9em;
-      text-align: center;
+      margin: 5px 0;
     }
 
-    button {
+    .product-card button {
       margin-top: auto;
       background-color: red;
       color: white;
@@ -161,199 +138,141 @@
       transition: background 0.3s;
     }
 
-    button:hover {
-      background-color: red;
-      transition-duration: 3s;
+    .product-card button:hover {
+      background-color: darkred;
     }
 
-    table {
-      margin: auto;
-      border-collapse: separate;
-      border-spacing: 20px 20px;
-    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-    td {
-      padding: 0;
-      vertical-align: top;
-      text-align: center;
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      .products-section {
+        padding: 0 10px 30px;
+      }
     }
   </style>
 </head>
-
 <body>
+
   <h1 class="main-title1">RCB ELECTRONICS</h1>
 
-  <nav class="navcontainer">
-    <aside class="logoblock">
+  <header>
+    <div class="logo">
       <img src="./Royal_Challengers_Bengaluru_Logo.svg-4.png" alt="RCB Logo" />
-    </aside>
-    <aside class="menuitems">
+    </div>
+    <nav>
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">Laptops</a></li>
-        <li><a href="#">MobilePhones</a></li>
-        <li><a href="#">Watches</a></li>
-        <li><a href="#">Login</a></li>
-        <li style="position:relative;">
-          <!-- Cart icon links to login page -->
-          <a href="cart.html" style="color:white; text-decoration:none;">
+        <li><a href="#laptops">Laptops</a></li>
+        <li><a href="#mobiles">Mobiles</a></li>
+        <li><a href="#watches">Watches</a></li>
+        <li><a href="./loginpage.html">Login</a></li>
+        <li style="position: relative;">
+          <a href="cart.html">
             <i class="fa-solid fa-cart-shopping"></i>
             <span id="cart-count">0</span>
           </a>
           <span id="empty-msg">Add some products</span>
         </li>
       </ul>
-    </aside>
-  </nav>
+    </nav>
+  </header>
 
-  <h1 class="main-title">LAPTOPS, MOBILE PHONES & WATCHES</h1>
+  <h2 class="main-title">LAPTOPS, MOBILE PHONES & WATCHES</h2>
 
-  <table>
-    <tr>
-      <td>
-        <div class="product-box">
-          <h1>AIR 13 M4</h1>
-          <img src="https://www.apple.com/v/mac/home/cg/images/overview/select/product_tile_mba_13_15__fx2g3qlubdym_large_2x.png" height="170px" width="250px" alt="MacBook Air 13 M4" />
-          <p><b>APPLE MACBOOK AIR 13&quot; M4</b></p>
-          <p>Strikingly thin and fast so you can work,</p>
-          <p>play or create anywhere</p>
-          <p><b>From ₹99900.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-      <td>
-        <div class="product-box">
-          <h1>AIR 13 M2</h1>
-          <img src="https://m.media-amazon.com/images/I/71CjP9jmqZL._AC_UY436_FMwebp_QL65_.jpg" alt="MacBook Air 13 M2" />
-          <p><b>APPLE MACBOOK AIR 13&quot; M2</b></p>
-          <p>MacBook Air with the M4 chip lets you blaze through work.</p>
-          <p>Your perfect pack for everyday use</p>
-          <p><b>From ₹129900.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-      <td>
-        <div class="product-box">
-          <h1>AIR 14 M4</h1>
-          <img src="https://m.media-amazon.com/images/I/71XIkqkx+KL._AC_UY436_FMwebp_QL65_.jpg" alt="MacBook Air 14 M4" />
-          <p><b>APPLE MACBOOK AIR 14&quot; M4</b></p>
-          <p>The Apple M4 chip brings even more speed and fluidity.</p>
-          <p>MacBook Air delivers the same incredible performance</p>
-          <p><b>From ₹399900.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-    </tr>
+  <!-- PRODUCTS SECTION -->
+  <section id="laptops" class="products-section">
+    <div class="product-card">
+      <h2>MacBook Air M4</h2>
+      <img src="https://www.apple.com/v/mac/home/cg/images/overview/select/product_tile_mba_13_15__fx2g3qlubdym_large_2x.png" alt="MacBook Air M4">
+      <p><b>APPLE MACBOOK AIR 13" M4</b></p>
+      <p>Strikingly thin and fast. Work and play anywhere.</p>
+      <p><b>₹99,900.00*</b></p>
+      <button>Add to cart</button>
+    </div>
 
-    <tr>
-      <td>
-        <div class="product-box">
-          <h1>iPhone 15 PLUS</h1>
-          <img src="https://m.media-amazon.com/images/I/71657TiFeHL._AC_UY436_QL65_.jpg" alt="iPhone 15 Plus" />
-          <p><b>iPhone 15 Plus</b></p>
-          <p>DYNAMIC ISLAND COMES TO IPHONE 15</p>
-          <p>Retina XDR display is up to 2x brighter.</p>
-          <p><b>From ₹59900.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-      <td>
-        <div class="product-box">
-          <h1>iPhone 16 PRO MAX</h1>
-          <img src="https://m.media-amazon.com/images/I/61giwQtR1qL._AC_UY436_QL65_.jpg" alt="iPhone 16 Pro Max" />
-          <p><b>iPhone 16 Pro Max</b></p>
-          <p>Camera Control, 4K 120 fps Dolby Vision</p>
-          <p>a Huge Leap in Battery Life.</p>
-          <p><b>From ₹159900.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-      <td>
-        <div class="product-box">
-          <h1>iPhone 16e</h1>
-          <img src="https://m.media-amazon.com/images/I/61FMZ9rSZUL._AC_UY436_QL65_.jpg" alt="iPhone 16e" />
-          <p><b>iPhone 16e</b></p>
-          <p>Built for Apple Intelligence, A18 Chip</p>
-          <p>Camera, 15.40 cm (6.1″).</p>
-          <p><b>From ₹759900.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-    </tr>
+    <div class="product-card">
+      <h2>MacBook Air M2</h2>
+      <img src="https://m.media-amazon.com/images/I/71CjP9jmqZL._AC_UY436_FMwebp_QL65_.jpg" alt="MacBook Air M2">
+      <p><b>APPLE MACBOOK AIR 13" M2</b></p>
+      <p>Thin, light, powerful — your perfect everyday companion.</p>
+      <p><b>₹89,900.00*</b></p>
+      <button>Add to cart</button>
+    </div>
+  </section>
 
-    <tr>
-      <td>
-        <div class="product-box">
-          <h1>CR7 EDITION</h1>
-          <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS6TRNEL7lp9tDynhTGvp9OPb8_x1WN-NqATVTCX5zdTyUQ0W3ySJdthYzbzHLKqRQecTuH0s4" alt="CR7 Edition Watch" />
-          <p><b>EPIC X CR7</b></p>
-          <p>Decorated with 232 diamonds and 109 black sapphires</p>
-          <p>Weighing a total of 21 carats.</p>
-          <p><b>PRICE: ₹7599000.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-      <td>
-        <div class="product-box">
-          <h1>SOLAR EDITION</h1>
-          <img src="https://cdn1.ethoswatches.com/media/catalog/product/cache/06b0325fe0d1ea074c67035fe5935845/j/a/jacob-co-astronomia-as300-40-aa-ac-abala.jpg" alt="Solar Edition Watch" />
-          <p><b>Astronomia Solar Constellations</b></p>
-          <p>Double-axis flying tourbillon, Calibre JCAM19</p>
-          <p><b>PRICE: ₹7569900.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-      <td>
-        <div class="product-box">
-          <h1>Jacob&Co</h1>
-          <img src="https://cdn1.ethoswatches.com/media/catalog/product/cache/6e5de5bc3d185d8179cdc7258143f41a/j/a/jacob-co-brilliant-bq020-10-ro-ke-abala-large.jpg" alt="Jacob & Co Watch" />
-          <p><b>Brilliant One Row Rose Golds Ruby 38 mm</b></p>
-          <p>From Jacob Arabo's rich tradition of gem-setting</p>
-          <p><b>PRICE: ₹26759900.00*</b></p>
-          <button>Add to cart</button>
-        </div>
-      </td>
-    </tr>
-  </table>
+  <section id="mobiles" class="products-section">
+    <div class="product-card">
+      <h2>iPhone 15 Plus</h2>
+      <img src="https://m.media-amazon.com/images/I/71657TiFeHL._AC_UY436_QL65_.jpg" alt="iPhone 15 Plus">
+      <p>Dynamic Island, 2x brighter Retina XDR display.</p>
+      <p><b>₹59,900.00*</b></p>
+      <button>Add to cart</button>
+    </div>
+
+    <div class="product-card">
+      <h2>iPhone 16 Pro Max</h2>
+      <img src="https://m.media-amazon.com/images/I/61giwQtR1qL._AC_UY436_QL65_.jpg" alt="iPhone 16 Pro Max">
+      <p><b>Camera Control, 4K 120fps</b></p>
+      <p><b>₹1,59,900.00*</b></p>
+      <button>Add to cart</button>
+    </div>
+  </section>
+
+  <section id="watches" class="products-section">
+    <div class="product-card">
+      <h2>CR7 Edition</h2>
+      <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS6TRNEL7lp9tDynhTGvp9OPb8_x1WN-NqATVTCX5zdTyUQ0W3ySJdthYzbzHLKqRQecTuH0s4" alt="CR7 Watch">
+      <p><b>EPIC X CR7</b></p>
+      <p>Diamond and sapphire studded luxury timepiece.</p>
+      <p><b>₹75,99,000.00*</b></p>
+      <button>Add to cart</button>
+    </div>
+  </section>
 
   <script>
     const cartCount = document.getElementById("cart-count");
     const emptyMsg = document.getElementById("empty-msg");
-
-    // Load cart from localStorage or empty array
     let cart = JSON.parse(localStorage.getItem('rcbCart')) || [];
-    let count = cart.length;
 
     function updateCart() {
-      if (count === 0) {
+      if (cart.length === 0) {
         cartCount.style.display = "none";
         emptyMsg.style.display = "inline";
       } else {
         cartCount.style.display = "inline";
         emptyMsg.style.display = "none";
-        cartCount.innerText = count;
+        cartCount.innerText = cart.length;
       }
     }
 
     updateCart();
 
-    document.querySelectorAll(".product-box").forEach(productBox => {
-      const button = productBox.querySelector("button");
-      button.addEventListener("click", () => {
-        // Collect product info from this product box
+    document.querySelectorAll(".product-card button").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const productCard = e.target.closest(".product-card");
         const product = {
-          name: productBox.querySelector("h1").innerText,
-          description: Array.from(productBox.querySelectorAll("p")).map(p => p.innerText).join(' '),
-          price: productBox.querySelector("p:last-of-type").innerText,
-          image: productBox.querySelector("img").src
+          name: productCard.querySelector("h2").innerText,
+          description: Array.from(productCard.querySelectorAll("p")).map(p => p.innerText).join(' '),
+          price: productCard.querySelector("p:last-of-type").innerText,
+          image: productCard.querySelector("img").src
         };
-
         cart.push(product);
-        count = cart.length;
         localStorage.setItem('rcbCart', JSON.stringify(cart));
+        alert(`${product.name} added to cart`);
         updateCart();
       });
     });
   </script>
+
 </body>
 </html>
